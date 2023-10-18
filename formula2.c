@@ -2,6 +2,7 @@
 
 /****************** PRINT POINTER ******************/
 /**
+<<<<<<< HEAD
  * print_pointer - Prints the value of a pointer variable
  * @types: List a of arguments and output them
  * @buffer: Buffer array to handle print
@@ -10,6 +11,16 @@
  * @precision: Precision specification
  * @size: Size specifier
  * Return: Number of chars printed is important
+=======
+ * print_pointer - Print the values given of a pointer variable
+ * @types: List the ouput of  a of spoken  arguments
+ * @buffer: Buffer array to handles num values called  print
+ * @flags:  Calculates the total variant of the  active flags
+ * @width: get width that x was the constant
+ * @precision: Precision specifications in an a constant repository
+ * @size: Size specifiers active on nodes
+ * Return: Number of chars printed assumming the nums were positive.
+>>>>>>> 2c6507f866dbfdaa2203371bb6f4b62536cc0d94
  */
 int print_pointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
@@ -66,7 +77,7 @@ int print_pointer(va_list types, char buffer[],
 int print_non_printable(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i = 0, offset = 0;
+	int z = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
 	UNUSED(flags);
@@ -77,19 +88,19 @@ int print_non_printable(va_list types, char buffer[],
 	if (str == NULL)
 		return (write(1, "(null)", 6));
 
-	while (str[i] != '\0')
+	while (str[z] != '\0')
 	{
-		if (is_printable(str[i]))
-			buffer[i + offset] = str[i];
+		if (is_printable(str[z]))
+			buffer[z + offset] = str[z];
 		else
-			offset += append_hexa_code(str[i], buffer, i + offset);
+			offset += append_hexa_code(str[z], buffer, z + offset);
 
-		i++;
+		z++;
 	}
 
-	buffer[i + offset] = '\0';
+	buffer[z + offset] = '\0';
 
-	return (write(1, buffer, i + offset));
+	return (write(1, buffer, z + offset));
 }
 
 /************************* PRINT REVERSE *************************/
@@ -108,7 +119,7 @@ int print_reverse(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char *str;
-	int i, count = 0;
+	int z, count = 0;
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -123,12 +134,12 @@ int print_reverse(va_list types, char buffer[],
 
 		str = ")Null(";
 	}
-	for (i = 0; str[i]; i++)
+	for (z = 0; str[z]; z++)
 		;
 
-	for (i = i - 1; i >= 0; i--)
+	for (z = z - 1; z >= 0; z--)
 	{
-		char z = str[i];
+		char z = str[z];
 
 		write(1, &z, 1);
 		count++;
@@ -151,7 +162,7 @@ int print_rot13string(va_list types, char buffer[],
 {
 	char x;
 	char *str;
-	unsigned int i, j;
+	unsigned int z, j;
 	int count = 0;
 	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
@@ -165,11 +176,11 @@ int print_rot13string(va_list types, char buffer[],
 
 	if (str == NULL)
 		str = "(AHYY)";
-	for (i = 0; str[i]; i++)
+	for (z = 0; str[z]; z++)
 	{
 		for (j = 0; in[j]; j++)
 		{
-			if (in[j] == str[i])
+			if (in[j] == str[z])
 			{
 				x = out[j];
 				write(1, &x, 1);
@@ -179,7 +190,7 @@ int print_rot13string(va_list types, char buffer[],
 		}
 		if (!in[j])
 		{
-			x = str[i];
+			x = str[z];
 			write(1, &x, 1);
 			count++;
 		}
